@@ -22,14 +22,21 @@ namespace MMABooksTests
         {
             dbContext = new MMABooksContext();
             dbContext.Database.ExecuteSqlRaw("call usp_testingResetData()");
+            dbContext.Database.ExecuteSqlRaw("call usp_testingResetStateData()");
         }
-
+        [TearDown]
+        public void Teardown()
+        {
+            dbContext = new MMABooksContext();
+            dbContext.Database.ExecuteSqlRaw("call usp_testingResetData()");
+            dbContext.Database.ExecuteSqlRaw("call usp_testingResetStateData()");
+        }
         [Test]
         public void GetAllTest()
         {
             states = dbContext.States.OrderBy(s => s.StateName).ToList();
-            Assert.AreEqual(52, states.Count);
-            Assert.AreEqual("Alabama", states[0].StateName);
+            Assert.AreEqual(53, states.Count);
+            Assert.AreEqual("Wyoming", states[52].StateName);
             PrintAll(states);
         }
 
@@ -73,13 +80,23 @@ namespace MMABooksTests
         [Test]
         public void CreateTest()
         {
-
+            s = new State();
+            s.StateCode = "PL";
+            s.StateName = "Plasma";
+            dbContext.States.Add(s);
+            dbContext.SaveChanges();
+            Assert.IsNotNull(dbContext.States.Find("PL"));
         }
 
         [Test]
         public void UpdateTest()
         {
-
+            s = dbContext.States.Find("OR");
+            s.StateName = "Oregon";
+            dbContext.States.Update(s);
+            dbContext.SaveChanges();
+            s = dbContext.States.Find("OR");
+            Assert.AreEqual("Oregon", s.StateName);
         }
 
         public void PrintAll(List<State> states)

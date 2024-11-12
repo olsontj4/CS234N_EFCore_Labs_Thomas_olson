@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace MMABooksEFClasses.MarisModels
 {
-    public partial class Invoicelineitems
+    public partial class Invoicelineitem
     {
         public int InvoiceId { get; set; }
         public string ProductCode { get; set; }
@@ -12,6 +12,6 @@ namespace MMABooksEFClasses.MarisModels
         public decimal ItemTotal { get; set; }
 
         public virtual Invoices Invoice { get; set; }
-        public virtual Products ProductCodeNavigation { get; set; }
+        public virtual Product ProductCodeNavigation { get; set; }
     }
 }
