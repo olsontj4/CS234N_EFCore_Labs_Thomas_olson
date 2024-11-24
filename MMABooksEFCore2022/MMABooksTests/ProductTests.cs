@@ -13,7 +13,6 @@ namespace MMABooksTests
     {
         MMABooksContext dbContext;
         Product? p;
-        Invoicelineitem? i;
         List<Product>? products;
 
         [SetUp]

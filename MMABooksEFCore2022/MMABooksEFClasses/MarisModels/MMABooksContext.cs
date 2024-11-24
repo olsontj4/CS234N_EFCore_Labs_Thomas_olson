@@ -17,7 +17,7 @@ namespace MMABooksEFClasses.MarisModels
 
         public virtual DbSet<Customer> Customers { get; set; }
         public virtual DbSet<Invoicelineitem> Invoicelineitems { get; set; }
-        public virtual DbSet<Invoices> Invoices { get; set; }
+        public virtual DbSet<Invoice> Invoices { get; set; }
         public virtual DbSet<Product> Products { get; set; }
         public virtual DbSet<State> States { get; set; }
 
@@ -109,7 +109,7 @@ namespace MMABooksEFClasses.MarisModels
                     .HasConstraintName("FK_InvoiceLineItems_Products");
             });
 
-            modelBuilder.Entity<Invoices>(entity =>
+            modelBuilder.Entity<Invoice>(entity =>
             {
                 entity.HasKey(e => e.InvoiceId)
                     .HasName("PRIMARY");
