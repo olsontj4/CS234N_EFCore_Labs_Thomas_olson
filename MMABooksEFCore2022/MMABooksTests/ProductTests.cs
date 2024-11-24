@@ -68,6 +68,11 @@ namespace MMABooksTests
         public void DeleteTest()
         {
             p = dbContext.Products.Find("ADV4");
+            List<Invoicelineitem> invoicelineitems = dbContext.Invoicelineitems.Where(i => i.ProductCode == "ADV4").ToList();
+            foreach (var item in invoicelineitems)
+            {
+                dbContext.Invoicelineitems.Remove(item);
+            }
             dbContext.Products.Remove(p);
             dbContext.SaveChanges();
             Assert.IsNull(dbContext.Products.Find("ADV4"));
