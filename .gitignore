@@ -363,3 +363,4 @@ MigrationBackup/
 FodyWeavers.xsd
 /MMABooksEFCore2022/MMABooksEFClasses/mySqlSettings.json
 /MMABooksEFCore2022/MMABooksEFClasses/mySqlSettings.json
+/MMABooksEFCore2022/MMABOOKSRESTAPI/Properties/launchSettings.json
