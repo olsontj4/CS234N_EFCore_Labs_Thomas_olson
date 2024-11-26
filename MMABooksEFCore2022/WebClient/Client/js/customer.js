@@ -8,7 +8,7 @@ class CustomerPage {
     };
 
     // instance variables that the app needs but are not part of the "state" of the application
-    this.server = "http://localhost:5000/api"
+    this.server = "https://localhost:44395/api"
     this.url = this.server + "/customers";
 
     // instance variables related to ui elements simplifies code in other places
@@ -32,7 +32,6 @@ class CustomerPage {
     this.makeFieldsReadOnly(true);
     this.makeFieldsRequired(false);
     this.enableButtons("pageLoad");
-
   }
 
   // any method that is used as part of an event handler must bind this to the class
@@ -63,7 +62,7 @@ class CustomerPage {
     .then(response => response.json())
     .then(data => { 
       if (data.length == 0) {
-        alert("Can't load states.  Can not add or edit customers without state inforamtion.");
+        alert("Can't load states.  Can not add or edit customers without state information.");
       }
       else {
         this.state.states = data;
@@ -135,11 +134,11 @@ class CustomerPage {
           alert("Customer was deleted.")
         }
         else{
-          alert('There was a problem deleting customer info!'); 
+          alert(`There was a problem deleting customer info!`); 
         }
       })
       .catch(error => {
-        alert('There was a problem deleting customer info!'); 
+        alert('There was a problem deleting customer info!');
       });
     }
     else {
@@ -161,10 +160,10 @@ class CustomerPage {
           name: this.$customerName.value,
           address: this.$customerAddress.value,
           city: this.$customerCity.value,
-          stateCode: this.$customerState.value,
+          state: this.$customerState.value,  // Edited from Lab 6 tips.
           zipCode: this.$customerZipcode.value,
           invoices: [], 
-          state: null
+          stateNavigation: null
         }),
         headers: {
           'Content-Type': 'application/json'
@@ -199,7 +198,7 @@ class CustomerPage {
       customer.name = this.$customerName.value;
       customer.address = this.$customerAddress.value;
       customer.city = this.$customerCity.value;
-      customer.stateCode = this.$customerState.value;
+      customer.state = this.$customerState.value;  // Edited from Lab 6 tips.
       customer.zipCode = this.$customerZipcode.value;
       fetch(`${this.url}/${this.state.customerId}`, {
         method: 'PUT', 
@@ -276,6 +275,7 @@ class CustomerPage {
     this.$customerAddress.value = this.state.customer.address;
     this.$customerCity.value = this.state.customer.city;
     this.loadStates();
+    this.$customerState.value = this.state.customer.state;  // Edited from Lab 6 tips.
     this.$customerZipcode.value = this.state.customer.zipCode;
     this.makeFieldsReadOnly();
   }
