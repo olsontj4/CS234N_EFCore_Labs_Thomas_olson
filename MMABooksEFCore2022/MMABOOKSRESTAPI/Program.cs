@@ -1,5 +1,5 @@
 using Microsoft.Extensions.Options;
-using MMABooksEFClasses.MarisModels;
+using MMABooksEFClasses.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 

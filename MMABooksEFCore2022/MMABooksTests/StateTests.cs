@@ -3,7 +3,7 @@ using System.Linq;
 using System;
 
 using NUnit.Framework;
-using MMABooksEFClasses.MarisModels;
+using MMABooksEFClasses.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace MMABooksTests
@@ -61,7 +61,7 @@ namespace MMABooksTests
         [Test]
         public void GetWithCustomersTest()
         {
-            s = dbContext.States.Include("Customers").Where(s => s.StateCode == "OR").SingleOrDefault();
+            s = dbContext.States.Include("Customers").Where(s => s.state == "OR").SingleOrDefault();
             Assert.IsNotNull(s);
             Assert.AreEqual("Ore", s.StateName);
             Assert.AreEqual(5, s.Customers.Count);
@@ -81,7 +81,7 @@ namespace MMABooksTests
         public void CreateTest()
         {
             s = new State();
-            s.StateCode = "PL";
+            s.state = "PL";
             s.StateName = "Plasma";
             dbContext.States.Add(s);
             dbContext.SaveChanges();

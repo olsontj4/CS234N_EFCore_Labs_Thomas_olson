@@ -8,7 +8,7 @@ class CustomerPage {
     };
 
     // instance variables that the app needs but are not part of the "state" of the application
-    this.server = "https://localhost:44395/api"
+    this.server = "http://localhost:5000/api"
     this.url = this.server + "/customers";
 
     // instance variables related to ui elements simplifies code in other places
@@ -161,7 +161,7 @@ class CustomerPage {
           name: this.$customerName.value,
           address: this.$customerAddress.value,
           city: this.$customerCity.value,
-          state: this.$customerState.value, //Added from Lab 6 Tips.
+          stateCode: this.$customerState.value,
           zipCode: this.$customerZipcode.value,
           invoices: [], 
           state: null
@@ -276,7 +276,6 @@ class CustomerPage {
     this.$customerAddress.value = this.state.customer.address;
     this.$customerCity.value = this.state.customer.city;
     this.loadStates();
-    this.$customerState.value = this.state.customer.state;  //Added from Lab 6 tips.
     this.$customerZipcode.value = this.state.customer.zipCode;
     this.makeFieldsReadOnly();
   }

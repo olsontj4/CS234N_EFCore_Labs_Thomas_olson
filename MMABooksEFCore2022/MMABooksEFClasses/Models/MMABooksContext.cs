@@ -144,12 +144,12 @@ namespace MMABooksEFClasses.Models
 
             modelBuilder.Entity<State>(entity =>
             {
-                entity.HasKey(e => e.StateCode)
+                entity.HasKey(e => e.state)
                     .HasName("PRIMARY");
 
                 entity.ToTable("states");
 
-                entity.Property(e => e.StateCode)
+                entity.Property(e => e.state)
                     .HasMaxLength(2)
                     .IsFixedLength();
 
