@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 namespace MMABooksEFClasses.MarisModels
 {
-    public partial class Invoices
+    public partial class Invoice
     {
-        public Invoices()
+        public Invoice()
         {
             Invoicelineitems = new HashSet<Invoicelineitem>();
         }

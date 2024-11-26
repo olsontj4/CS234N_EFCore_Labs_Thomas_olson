@@ -9,10 +9,8 @@ namespace MMABooksEFClasses.Models
         {
             Customers = new HashSet<Customer>();
         }
-
         public string StateCode { get; set; } = null!;
         public string StateName { get; set; } = null!;
-
         public virtual ICollection<Customer> Customers { get; set; }
     }
 }

@@ -3,7 +3,7 @@ using System.Linq;
 using System;
 
 using NUnit.Framework;
-using MMABooksEFClasses.MarisModels;
+using MMABooksEFClasses.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace MMABooksTests
@@ -13,7 +13,6 @@ namespace MMABooksTests
     {
         MMABooksContext dbContext;
         Product? p;
-        Invoicelineitem? i;
         List<Product>? products;
 
         [SetUp]
@@ -69,6 +68,11 @@ namespace MMABooksTests
         public void DeleteTest()
         {
             p = dbContext.Products.Find("ADV4");
+            List<Invoicelineitem> invoicelineitems = dbContext.Invoicelineitems.Where(i => i.ProductCode == "ADV4").ToList();
+            foreach (var item in invoicelineitems)
+            {
+                dbContext.Invoicelineitems.Remove(item);
+            }
             dbContext.Products.Remove(p);
             dbContext.SaveChanges();
             Assert.IsNull(dbContext.Products.Find("ADV4"));

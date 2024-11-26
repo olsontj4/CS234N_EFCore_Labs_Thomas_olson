@@ -362,3 +362,5 @@ MigrationBackup/
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
 /MMABooksEFCore2022/MMABooksEFClasses/mySqlSettings.json
+/MMABooksEFCore2022/MMABooksEFClasses/mySqlSettings.json
+/MMABooksEFCore2022/MMABOOKSRESTAPI/Properties/launchSettings.json

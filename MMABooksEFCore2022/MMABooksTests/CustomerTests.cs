@@ -3,7 +3,7 @@ using System.Linq;
 using System;
 
 using NUnit.Framework;
-using MMABooksEFClasses.MarisModels;
+using MMABooksEFClasses.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace MMABooksTests
@@ -44,7 +44,7 @@ namespace MMABooksTests
         public void GetUsingWhere()
         {
             // get a list of all of the customers who live in OR
-            customers = dbContext.Customers.Where(c => c.StateCode.Equals("OR")).OrderBy(c => c.Name).ToList();
+            customers = dbContext.Customers.Where(c => c.State.Equals("OR")).OrderBy(c => c.Name).ToList();
             Assert.AreEqual(5, customers.Count);
             Assert.AreEqual("Erpenbach, Lee", customers[0].Name);
             PrintAll(customers);
@@ -64,12 +64,12 @@ namespace MMABooksTests
         [Test]
         public void GetWithJoinTest()
         {
-            // get a list of objects that include the customer id, name, statecode and statename
+            // get a list of objects that include the customer id, name, state and statename
             var customers = dbContext.Customers.Join(
                dbContext.States,
-               c => c.StateCode,
+               c => c.State,
                s => s.StateCode,
-               (c, s) => new { c.CustomerId, c.Name, c.StateCode, s.StateName }).OrderBy(r => r.StateName).ToList();
+               (c, s) => new { c.CustomerId, c.Name, c.State, s.StateName }).OrderBy(r => r.StateName).ToList();
             Assert.AreEqual(696, customers.Count);
             // I wouldn't normally print here but this lets you see what each object looks like
             foreach (var c in customers)
@@ -95,7 +95,7 @@ namespace MMABooksTests
             c.Address = "101 Road dr.";
             c.City = "Gotham";
             c.ZipCode = "string";
-            c.StateCode = "OR";
+            c.State = "OR";
             dbContext.Customers.Add(c);
             dbContext.SaveChanges();
             Assert.IsNotNull(dbContext.Customers.Where(c => c.Name == "Capt. Plasma"));

@@ -11,7 +11,7 @@ namespace MMABooksEFClasses.MarisModels
         public int Quantity { get; set; }
         public decimal ItemTotal { get; set; }
 
-        public virtual Invoices Invoice { get; set; }
+        public virtual Invoice Invoice { get; set; }
         public virtual Product ProductCodeNavigation { get; set; }
     }
 }
