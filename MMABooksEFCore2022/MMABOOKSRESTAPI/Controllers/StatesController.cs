@@ -54,7 +54,7 @@ namespace MMABOOKSRESTAPI.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutState(string id, State state)
         {
-            if (id != state.state)
+            if (id != state.StateCode)
             {
                 return BadRequest();
             }
@@ -96,7 +96,7 @@ namespace MMABOOKSRESTAPI.Controllers
             }
             catch (DbUpdateException)
             {
-                if (StateExists(state.state))
+                if (StateExists(state.StateCode))
                 {
                     return Conflict();
                 }
@@ -106,7 +106,7 @@ namespace MMABOOKSRESTAPI.Controllers
                 }
             }
 
-            return CreatedAtAction("GetState", new { id = state.state }, state);
+            return CreatedAtAction("GetState", new { id = state.StateCode }, state);
         }
 
         // DELETE: api/States/5
@@ -131,7 +131,7 @@ namespace MMABOOKSRESTAPI.Controllers
 
         private bool StateExists(string id)
         {
-            return (_context.States?.Any(e => e.state == id)).GetValueOrDefault();
+            return (_context.States?.Any(e => e.StateCode == id)).GetValueOrDefault();
         }
     }
 }

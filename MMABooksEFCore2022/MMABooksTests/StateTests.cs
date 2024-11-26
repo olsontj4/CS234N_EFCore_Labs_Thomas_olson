@@ -61,7 +61,7 @@ namespace MMABooksTests
         [Test]
         public void GetWithCustomersTest()
         {
-            s = dbContext.States.Include("Customers").Where(s => s.state == "OR").SingleOrDefault();
+            s = dbContext.States.Include("Customers").Where(s => s.StateCode == "OR").SingleOrDefault();
             Assert.IsNotNull(s);
             Assert.AreEqual("Ore", s.StateName);
             Assert.AreEqual(5, s.Customers.Count);
@@ -81,7 +81,7 @@ namespace MMABooksTests
         public void CreateTest()
         {
             s = new State();
-            s.state = "PL";
+            s.StateCode = "PL";
             s.StateName = "Plasma";
             dbContext.States.Add(s);
             dbContext.SaveChanges();

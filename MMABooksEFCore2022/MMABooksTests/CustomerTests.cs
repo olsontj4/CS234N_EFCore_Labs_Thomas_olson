@@ -68,7 +68,7 @@ namespace MMABooksTests
             var customers = dbContext.Customers.Join(
                dbContext.States,
                c => c.State,
-               s => s.state,
+               s => s.StateCode,
                (c, s) => new { c.CustomerId, c.Name, c.State, s.StateName }).OrderBy(r => r.StateName).ToList();
             Assert.AreEqual(696, customers.Count);
             // I wouldn't normally print here but this lets you see what each object looks like
